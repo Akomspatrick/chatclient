@@ -8,6 +8,7 @@ import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 import { useEffect, useState } from "react";
 import NotificationBoard from "./components/NotificationBoard";
 import { NotificationData } from "./components/Notificationsinerfaces";
+import { ChatMessage } from "./components/ChatMessage";
 
 
 // function App() {
@@ -94,6 +95,7 @@ const sampleData: NotificationData[] = [
 ];
 function App() {
   const [tabledata , setTableData] = useState<NotificationData[]>(sampleData);
+  const [connection, setConnection] = useState<any>(null);
   //  useEffect(() => {
   //   const interval = setInterval(() => {
   //     const randomIndex = Math.floor(Math.random() * sampleData.length);
@@ -105,49 +107,70 @@ function App() {
   // , [tabledata]);
 
 
-
-
+    useEffect(() => {
+      if (!connection) {
+        // connection.start().then(() => {
+        //   console.log("Connection started!");
+        // });
+      
       const conn = new HubConnectionBuilder().withUrl("http://localhost:5036/chatHub")
-          .withAutomaticReconnect()
-          .configureLogging(LogLevel.Information)
-          .build();
+      .withAutomaticReconnect().configureLogging(LogLevel.Information).build();
+      conn.on("ReceiveSpecificMessage", ( message:ChatMessage) => {
+        console.log(`User=> ${message.messageOwner} `);
+        console.log(`User=> ${message.toEmail} `);
+     //   const randomIndex = Math.floor(Math.random() * tabledata.length);
+        //const randomData: NotificationData = { id: randomIndex, message: message.messageBody, type: 'Info', };
+        setTableData((prev) => [...prev, message]);
+       alert
+      }
+      );
+
+
+
+      // conn.on("ReceiveMessage", (user, message) => {
+      //   const randomIndex = Math.floor(Math.random() * tabledata.length);
+      //   const randomData: NotificationData = { id: randomIndex, message: message + 5, type: 'Info', };
+      //   const val = +user
+      //   if (val %2> 0) {
+      //     setTableData((prev) => [...prev, randomData]);//setTableData([...tabledata, randomData]);
+      //    // alert(val);
+      //     }
+      //     else{
+      //      // alert(val);
+      //      console.log(`User=> ${randomData.message} `);
+      //     }
+       
+      // });
+      conn.start().then(() => { console.log("Connection started!");} ).catch(err=>{console.log(err);} );
+    
+      setConnection(conn);
+    }
+     } , [tabledata,]);
+  
+
+
+
         
 
-         const joinRoom = async (userName: string, chatRoom: string) => {
-          try {
-            //if (conn.state == 'Connected') {
+        //  const joinRoom = async (userName: string, chatRoom: string) => {
+        //   try {
+        //     //if (conn.state == 'Connected') {
         
-           conn.on("ReceiveMessage", (user, message) => {
-              if (user != null) {
-                console.log(`${user}:  Not null`);
-               
-              }
-              else {
-                alert("UserImprovised");
-                user = "AdminImprovised";
-              }
+        //    conn.on("ReceiveMessage", (user, message) => {
 
-              if (message != null) {
-                console.log(` ${message} not null `);
-              }
-              else {
-                alert("MessageImprovised");
-                message = "MessageImprovised";
-              }
-              console.log(`seeee ${user}: ${message}`);
-              const randomIndex = Math.floor(Math.random() * tabledata.length);
-              const randomData: NotificationData = { id: randomIndex, message: message + 5, type: 'Info', };
-              setTableData((prev) => [...prev, randomData]);
-              //setTableData([...tabledata, randomData]);
-              console.log(`User=> ${randomData.message} `);
-              console.log(`${user}: ${message} now now `);
-            });
-            if (conn.state == "Disconnected") {
-              console.log(conn.state);
-              alert("Connect has not stated");
-              //return;
-              }
-                await conn.start().catch(err=>{console.log(err);} );
+        //       const randomIndex = Math.floor(Math.random() * tabledata.length);
+        //       const randomData: NotificationData = { id: randomIndex, message: message + 5, type: 'Info', };
+        //       setTableData((prev) => [...prev, randomData]);
+        //       //setTableData([...tabledata, randomData]);
+        //       console.log(`User=> ${randomData.message} `);
+        //       console.log(`${user}: ${message} now now `);
+        //     });
+        //     if (conn.state == "Disconnected") {
+        //       console.log(conn.state);
+        //       alert("Connect has not stated");
+        //       //return;
+        //       }
+        //         await conn.start().catch(err=>{console.log(err);} );
             
         
             // await conn.invoke("JoinChatGroupRoom", { userName, chatRoom });
@@ -155,25 +178,25 @@ function App() {
             //   "SendMessage",
             //   userName + " Sending message from client" + chatRoom
             // );
-            if (conn.state == "Connected") {
-              console.log(conn.state);
-              alert("Connect has stated");
-              await conn.invoke("JoinChatRoom", { userName, chatRoom });
-              }
+    //         if (conn.state == "Connected") {
+    //           console.log(conn.state);
+    //           alert("Connect has stated");
+    //           await conn.invoke("JoinChatRoom", { userName, chatRoom });
+    //           }
           
            
-          } catch (err) {
-            console.log("Connection state "+ conn.state);
-            console.log(err);
-          }
-          //console.log(`User ${userName} joined room ${chatRoom}`);
-        };
-          useEffect(() => {
-            const randomIndex = Math.floor(Math.random() * tabledata.length)
-            joinRoom( "Admin23", "123"+randomIndex  )
-            const randomData2:NotificationData =   {id: randomIndex, message: "Justmessage"+randomIndex, type: 'Error',  };
-            setTableData((prev)=>[...prev, randomData2]);
-    }, []);
+    //       } catch (err) {
+    //         console.log("Connection state "+ conn.state);
+    //         console.log(err);
+    //       }
+    //       //console.log(`User ${userName} joined room ${chatRoom}`);
+    //     };
+    //       useEffect(() => {
+    //         const randomIndex = Math.floor(Math.random() * tabledata.length)
+    //         joinRoom( "Admin23", "123"+randomIndex  )
+    //         const randomData2:NotificationData =   {id: randomIndex, message: "Justmessage"+randomIndex, type: 'Error',  };
+    //         setTableData((prev)=>[...prev, randomData2]);
+    // }, []);
 
   
 

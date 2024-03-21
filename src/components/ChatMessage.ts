@@ -1,13 +1,4 @@
-export interface NotificationBoardProps {
-    data: NotificationData[];
-}
-
-export interface NotificationData2 {
-    id: number;
-    message: string;
-    type: string;
-}
-export interface NotificationData {
+export interface ChatMessage {
     guid: string;
     messageGroupGuid: string;
     dateSent: string;

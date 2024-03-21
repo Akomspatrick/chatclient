@@ -5,6 +5,12 @@ import ClearIcon from '@mui/icons-material/OneKOutlined';
 import ArchiveIcon from '@mui/icons-material/Archive';
 import { NotificationBoardProps } from './Notificationsinerfaces';
 
+const returndate = (date: string) => {
+  console.log(date);
+  return new Date(date).toLocaleDateString('en-CA')+ ' '+ new Date(date).toLocaleTimeString('en-CA');
+}
+
+
 const NotificationBoard = ({data}: NotificationBoardProps) => {
   return (
     <TableContainer 
@@ -17,8 +23,9 @@ const NotificationBoard = ({data}: NotificationBoardProps) => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Type</TableCell>
-            <TableCell>Message</TableCell>
+          <TableCell>Sno</TableCell>
+            <TableCell>Date</TableCell>
+            <TableCell>Title</TableCell>
             <TableCell>Actions</TableCell>
           </TableRow>
         </TableHead>
@@ -26,15 +33,22 @@ const NotificationBoard = ({data}: NotificationBoardProps) => {
           {data.map((notification,index) => (
             <TableRow 
               key={index}
-            //   sx={{ 
-            //     backgroundColor: notification.type === 'Error' ? 'error.main' : 
-            //                     notification.type === 'Warning' ? 'warning.main' : 
-            //                     'success.main',
-            //     color: 'background.paper',
-            //   }}
+              sx={{ 
+                backgroundcolor: notification.messageOwner ? 'error.main' :  'success.main',
+                
+              }}
+              style={{color: notification.messageOwner ? 'rgba(255,0,0,0.1)' : 'rgba(0,255,0,0.1)'}}
             >
-              <TableCell>{notification.type}</TableCell>
-              <TableCell>{notification.message}</TableCell>
+              <TableCell>{index+1}</TableCell>
+              <TableCell
+              
+               >{returndate(notification.dateSent)}</TableCell>
+              <TableCell  key={index}
+               sx={{ 
+                color: notification.messageOwner ? 'error.main' :  'success.main',
+                 
+               }}
+               >{notification.messageTitle}</TableCell>
               <TableCell
                 sx={{
                   display: 'flex',
