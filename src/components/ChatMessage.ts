@@ -18,5 +18,4 @@ export interface ChatMessage {
     messageId: string;
     messageStatus: string;
     messagePriority: string;
-    messageSubject: string;
 }
