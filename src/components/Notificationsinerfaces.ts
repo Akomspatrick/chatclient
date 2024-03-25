@@ -2,11 +2,11 @@ export interface NotificationBoardProps {
     data: NotificationData[];
 }
 
-export interface NotificationData2 {
-    id: number;
-    message: string;
-    type: string;
-}
+// export interface NotificationData2 {
+//     id: number;
+//     message: string;
+//     type: string;
+// }
 export interface NotificationData {
     guid: string;
     messageGroupGuid: string;
@@ -14,10 +14,9 @@ export interface NotificationData {
     dateViewed: string;
     dateCompleted: string;
     dateArchived: string;
-    fromUser: string;
-    toUser: string;
-    sourceEmail: string;
-    toEmail: string;
+    sender: string;//FromUser sender
+    mainRecipient  : string; //ToUser
+    allRecipients : string;// this is the email of people from the group
     originatingApp: string;
     messageBody: string;
     messageTitle: string;
@@ -27,5 +26,5 @@ export interface NotificationData {
     messageId: string;
     messageStatus: string;
     messagePriority: string;
-    messageSubject: string;
+   // messageSubject: string;
 }
