@@ -24,7 +24,8 @@ export interface NotificationData {
     messageOwner: boolean;
     messageUrl: string;
     messageId: string;
-    messageStatus: string;
-    messagePriority: string;
+    messageStatus: string;//"NEW";//VIEWED,DONE,
+    messagePriority: boolean;
+    messageVisible: boolean;//this is to show or hide the message
    // messageSubject: string;
 }

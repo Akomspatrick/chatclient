@@ -5,7 +5,6 @@ import NotificationBoard from "./components/NotificationBoard";
 import { NotificationData } from "./components/Notificationsinerfaces";
 import { SampleData } from "./components/Sampledata";
 import { AppBar, Box, Button, Container, IconButton, Paper, Toolbar } from '@mui/material';
-
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import LifeReports from "./components/LifeReports";
 import AppDashboard from "./components/AppDasboard";
@@ -13,10 +12,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./state/store";
 import { clearSelectedApp } from "./state/SelectedAppSlice";
 function App() {
-  const [tabledata , setTableData] = useState<NotificationData[]>(SampleData);
+  //const [tabledata , setTableData] = useState<NotificationData[]>(SampleData);
+  // we will pull data from the server instead of sample data
+  const [tabledata , setTableData] = useState<NotificationData[]>([]);
   const [connection, setConnection] = useState<any>(null);
   const [appClicked, setAppClicked] = useState<boolean>(false); 
   const [runningAppName, setRunningAppName] = useState<string>('DASHBOARD');
+  const appUser='softwareeng@massload.com';
+  // this should be the email of the login user which should be retrieved from the token/store
   const [appUrl, setAppUrl] = useState<string>('');
   const dispatch = useDispatch()
   const connectToHub= async() =>{
@@ -24,10 +27,16 @@ function App() {
       const conn = new HubConnectionBuilder().withUrl("http://localhost:5036/chatHub")
         .withAutomaticReconnect().configureLogging(LogLevel.Information).build();
       conn.on("ReceiveSpecificMessage", ( message:NotificationData) => {
-       
-        if(message.allRecipients === 'user2@user2'){
+        
+        //alert(message.allRecipients + ' ' + appUser + ' ' + message.messageVisible + ' ' );
+
+        if(message.allRecipients === appUser && message.messageVisible === true)
+        // the server should not even send the message if the user is not going to be visible
+      // check also if  you can use send to group so that you wont have to filter the message here
+        {
+         
           setTableData( tabledata=> [...tabledata, message]);
-          alert('message received'+ message.allRecipients);
+        
         }
     
         
