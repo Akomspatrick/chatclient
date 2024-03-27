@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
+
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -20,7 +20,7 @@ import { setSelectedApp } from '../state/SelectedAppSlice';
 
 
 export default function BasicCard(data:BasicCardProps) {
-  const url = useSelector((state:RootState) => state.selectedApp.selectedAppValue)
+  const url = useSelector((state:RootState) => state.selectedApp.selectAppName)
   console.log(url)
   const dispatch = useDispatch()
 
