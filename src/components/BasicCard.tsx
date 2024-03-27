@@ -21,13 +21,36 @@ import { setSelectedApp } from '../state/SelectedAppSlice';
 
 export default function BasicCard(data:BasicCardProps) {
   const url = useSelector((state:RootState) => state.selectedApp.selectAppName)
+  const redirectToApp= (url:string) => {
+    window.open(url, "_blank");
+  }
+  const redirectToAppUsingPost= (url:string) => {
+    const form = document.createElement('form');
+    form.method = 'get';
+    form.action = url;
+    form.target = '_blank';
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+  }
+  const redirectToAppUsingGet= (url:string) => {
+    const form = document.createElement('form');
+    form.method = 'get';
+    form.action = url;
+    form.target = '_blank';
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+  }
+
   console.log(url)
   const dispatch = useDispatch()
 
   function onClickHandler(event: React.MouseEvent<HTMLButtonElement>): void {
    
-
-
+    alert(data.appUrl);
+    //window.open(data.appUrl, "_blank");
+    redirectToAppUsingPost(data.appUrl)
     dispatch(setSelectedApp({selectedAppUrl:data.appUrl,itemclicked:true,selectAppName:data.appName }))
 
   }

@@ -6,25 +6,23 @@ import { BasicCardPropsData } from './BasicCardProps'
 
 const AppDasboard = () => {
   return (
-    <Box p={5} style={{ height: '58%' }}>
-    <Grid container spacing={4}>
-     
-          {BasicCardPropsData.map((data, index) => (
-              <Grid item xs={4} key={index}>
-                    <Paper elevation={5} >
-                    <BasicCard 
-                        theindex={data.theindex}
-                        appName={data.appName}
-                        appDescription={data.appDescription}
-                        appUrl={data.appUrl}
-                    />
-                  </Paper>
-              </Grid>
-            ))}
-
-     </Grid>
-</Box>
-  )
-}
+    <Box p={5} style={{ height: '100%' }}>
+      <Grid container spacing={4}>
+        {BasicCardPropsData.map((data, index) => (
+          <Grid item xs={12} sm={6} md={4} key={index}>
+            <Paper elevation={5}>
+              <BasicCard 
+                theindex={data.theindex}
+                appName={data.appName}
+                appDescription={data.appDescription}
+                appUrl={data.appUrl}
+              />
+            </Paper>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
+  );
+};
 
 export default AppDasboard

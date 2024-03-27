@@ -8,6 +8,7 @@ import {
   Box,
   Button,
   Container,
+  Grid,
   IconButton,
   Paper,
   Toolbar,
@@ -19,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./state/store";
 import { clearSelectedApp } from "./state/SelectedAppSlice";
 import { setHubConnection } from "./state/HubConnectionSlice";
+import NotificationComponent from "./components/NotificationComponent";
 function App() {
   const [tabledata , setTableData] = useState<NotificationData[]>(SampleData);
   // we will pull data from the server instead of sample data
@@ -79,24 +81,19 @@ function App() {
   function showDashboardHandler(
     _event: React.MouseEvent<HTMLButtonElement>
   ): void {
+   
     dispatch(clearSelectedApp());
     setRunningAppName("DASHBOARD");
     setAppClicked(false);
+  
   }
 
   return (
-    <Container
-      style={{
-        width: "100vw",
-        maxWidth: "none",
-        margin: "0",
-        padding: "0",
-        border: "0",
-      }}
-    >
-      <Box display="flex" height="100vh">
-        <Box flexGrow={1}>
-          <Paper elevation={3}>
+    <Container maxWidth={true} container style={{ height: '100vh' }}  >
+
+        
+        <Grid item xs={12} md={8} >
+       
             <AppBar position="static" style={{ backgroundColor: "black" }}>
               <Toolbar>
                 <IconButton edge="start" color="inherit" aria-label="close">
@@ -113,16 +110,21 @@ function App() {
                     Back to DashBoard
                   </Button>
                 ) : null}
+                <NotificationComponent connection={connection} tabledata={tabledata} />
               </Toolbar>
             </AppBar>
-            {/* <Box p={2}>
-              {connection ? null : <div>Connection not established</div>}
-            </Box> */}
-          </Paper>
-          <Paper elevation={3} style={{ width: "80vw", height: "100%" }}>
-            {appClicked ? (
+          
+
+        
+
+        
+         
+        </Grid>
+        
+        {appClicked ? (
               <>
-                <iframe width="100%" height="100%" src={appUrl}></iframe>
+                {/* <iframe width="100%" height="100%" src={appUrl}></iframe> */}
+                
               </>
             ) : (
               <Box p={1}>
@@ -130,18 +132,7 @@ function App() {
                 <LifeReports />
               </Box>
             )}
-          </Paper>
-        </Box>
-
-        <Box width="20%" p={1}>
-          <Paper style={{ height: "100%", overflow: "auto" }}>
-            {connection ? 
-            (tabledata.length>0 ? <NotificationBoard data={tabledata} /> : <div>No data available</div>)
-             :
-              <>...NO CONNECTION FROM SERVER...</>}
-          </Paper>
-        </Box>
-      </Box>
+            
     </Container>
   );
 }

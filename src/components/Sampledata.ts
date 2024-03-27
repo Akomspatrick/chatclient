@@ -18,6 +18,7 @@ export const SampleData: NotificationData[] = [
     messageOwner: true,
     messageUrl: "http://example.com/sample-message",
     messageId: "msg1234",
+    roomName: "room1",
     messageStatus: "NEW",
     messagePriority: false,
     messageVisible: true,
