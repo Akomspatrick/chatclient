@@ -15,7 +15,7 @@ export const BasicCardPropsData: BasicCardProps[] = [
     theindex: 2,
     appName: `Model Manager`,
     appDescription: `This is the description for app 2.`,
-    appUrl: `http://localhost:3000/quickstart/Akoms`,
+    appUrl: `http://localhost:3000/quickstart?value=Akoms`,
   },
   {
     theindex: 3,
