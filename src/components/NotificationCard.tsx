@@ -77,36 +77,7 @@ const NotificationCard = ({ index, notification }: NotificationCardProps) => {
         </ExpandMore>
       </CardActions>
       <NotificationCardCollapse expanded={expanded} notification={notification} />
-      {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          {notification.messageBody}
 
-          <Divider>
-            <Chip label="TARGET OWNER" size="small" />
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{ textDecoration: "underline" }}
-            >
-              {notification.mainRecipient}
-            </Typography>
-          </Divider>
-        </CardContent>
-        <CardActions disableSpacing>
-          <IconButton color="primary">
-            <ViewIcon />
-          </IconButton>
-          <IconButton color="secondary">
-            <DeleteIcon />
-          </IconButton>
-          <IconButton color="default">
-            <ClearIcon />
-          </IconButton>
-          <IconButton color="default">
-            <ArchiveIcon />
-          </IconButton>
-        </CardActions>
-      </Collapse> */}
     </Card>
   );
 };

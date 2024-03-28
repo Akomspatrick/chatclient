@@ -9,14 +9,9 @@ import { BasicCardProps } from './BasicCardProps';
 import { useDispatch, useSelector,  } from 'react-redux';
 import { RootState } from '../state/store';
 import { setSelectedApp } from '../state/SelectedAppSlice';
-// const bull = (
-//   <Box
-//     component="span"
-//     sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-//   >
-//     •
-//   </Box>
-// );
+import { styled } from '@mui/material/styles';
+
+
 
 
 export default function BasicCard(data:BasicCardProps) {
@@ -33,6 +28,21 @@ export default function BasicCard(data:BasicCardProps) {
     form.submit();
     document.body.removeChild(form);
   }
+
+const StyledCard = styled(Card)(({ theme }) => ({
+  minWidth: 275,
+  backgroundColor: theme.palette.grey[100],
+  borderRadius: 15,
+  boxShadow: '0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+}));
+
+const StyledButton = styled(Button)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
+  color: theme.palette.common.white,
+  '&:hover': {
+    backgroundColor: theme.palette.primary.dark,
+  },
+}));
   const redirectToAppUsingGet= (url:string) => {
     const form = document.createElement('form');
     form.method = 'get';
@@ -56,27 +66,26 @@ export default function BasicCard(data:BasicCardProps) {
   }
 
   return (
-    <Card sx={{ minWidth: 275 }}>
-      <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          APPLICATION
-        </Typography>
-        <Typography variant="h5" component="div">
-        {data.appName}
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          version 4.0
-        </Typography>
-        <Typography variant="body2">
-        {/*  click to explore{data.theindex}
-          <br />
-           {'"a benevolent smile"'} */}
-        </Typography>
-      </CardContent>
-      <CardActions>
-       
-        <Button  onClick={onClickHandler}>LAUNCH APP</Button>
-      </CardActions>
-    </Card>
+<StyledCard>
+  <CardContent>
+    <Typography sx={{ fontSize: 14, fontWeight: 'bold' }} color="text.secondary" gutterBottom>
+      APPLICATION
+    </Typography>
+    <Typography variant="h5" component="div">
+      {data.appName}
+    </Typography>
+    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+      version 4.0
+    </Typography>
+    <Typography variant="body2">
+    {/*  click to explore{data.theindex}
+      <br />
+       {'"a benevolent smile"'} */}
+    </Typography>
+  </CardContent>
+  <CardActions>
+    <StyledButton onClick={onClickHandler}>LAUNCH APP</StyledButton>
+  </CardActions>
+</StyledCard>
   );
 }
