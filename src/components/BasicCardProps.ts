@@ -27,7 +27,7 @@ export const BasicCardPropsData: BasicCardProps[] = [
     theindex: 4,
     appName: `Document Control Manager`,
     appDescription: `This is the description for app 4.`,
-    appUrl: `http://example.com/app4`,
+    appUrl: `http://localhost:3000/quickstart?`,
   },
   {
     theindex: 5,

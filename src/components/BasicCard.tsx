@@ -36,6 +36,21 @@ export default function BasicCard(data: BasicCardProps) {
 
   const redirectToAppUsingGet = (url: string) => {
     const form = document.createElement("form");
+    const hiddenField = document.createElement("input");
+    hiddenField.setAttribute("type", "hidden");
+    hiddenField.setAttribute("name", "key");
+    hiddenField.setAttribute("value", "kngcd");
+
+    form.appendChild(hiddenField);
+
+    const hiddenField2 = document.createElement("input");
+    hiddenField2.setAttribute("type", "hidden");
+    hiddenField2.setAttribute("name", "key2");
+    hiddenField2.setAttribute("value", "1234");
+
+    form.appendChild(hiddenField2);
+
+
     form.method = "get";
     form.action = url;
     form.target = "_blank";
