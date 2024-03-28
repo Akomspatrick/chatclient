@@ -11,36 +11,38 @@ import { useState } from 'react';
 
 
 const NotificationCardCollapse= ({ expanded, notification }:NotificationCardCollapseProps) => {
-    function viewIconOnClickhandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+    function viewIconOnClickhandler(_event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
         alert("View Icon Clicked");
     }
-    function doneIconOnClickhandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
-        alert("done Icon Clicked");
+    function doneIconOnClickhandler(_event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+        alert("done Icon Clicked- If you are the owner of the task, you can mark it as done. ,");
     }
-    function archiveIconOnClickhandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+    function archiveIconOnClickhandler(_event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
         alert("arvive Icon Clicked");
     }
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
+     
       };
     
       const handleClose = () => {
         setOpen(false);
       };
-    function replyIconOnClickhandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+    function replyIconOnClickhandler(_event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
      
        handleClickOpen();
     }
-    
+    const ownerStatus ="TARGET OWNER : "+ notification.messageOwnerStatus;
   return (
+   
     <Collapse in={expanded} timeout="auto" unmountOnExit>
       <CardContent>
         {notification.messageBody}
 
         <Divider>
-          <Chip label="TARGET OWNER" size="small" />
+          <Chip label={ownerStatus} size="small" />
           <Typography
             variant="body2"
             color="text.secondary"
@@ -51,16 +53,18 @@ const NotificationCardCollapse= ({ expanded, notification }:NotificationCardColl
         </Divider>
       </CardContent>
       <CardActions disableSpacing>
-      <Tooltip title="Viewed">
+      {/* <Tooltip title="Viewed">
           <IconButton color="primary" onClick={ viewIconOnClickhandler}>
           <ViewIcon />
         </IconButton>
-        </Tooltip>
-        <Tooltip title="Done- Task Completed">
-        <IconButton color="secondary" onClick={ doneIconOnClickhandler}>
-          <DoneIcon />
-        </IconButton>
-        </Tooltip>
+        </Tooltip> */}
+        {notification.messageOwner && (
+  <Tooltip title="Done- Task Completed">
+    <IconButton color="secondary" onClick={doneIconOnClickhandler}>
+      <DoneIcon />
+    </IconButton>
+  </Tooltip>
+)}
         <Tooltip title="Reply to sender">
         <IconButton color="default" onClick={ replyIconOnClickhandler}>
           <ReplyIcon />

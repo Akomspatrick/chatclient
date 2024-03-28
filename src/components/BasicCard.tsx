@@ -8,7 +8,6 @@ import Typography from '@mui/material/Typography';
 import { BasicCardProps } from './BasicCardProps';
 import { useDispatch, useSelector,  } from 'react-redux';
 import { RootState } from '../state/store';
-import { setSelectedApp } from '../state/SelectedAppSlice';
 import { styled } from '@mui/material/styles';
 
 
@@ -32,17 +31,11 @@ export default function BasicCard(data:BasicCardProps) {
 const StyledCard = styled(Card)(({ theme }) => ({
   minWidth: 275,
   backgroundColor: theme.palette.grey[100],
-  borderRadius: 15,
+  borderRadius: 35,
   boxShadow: '0 6px 20px 0 rgba(0, 0, 0, 0.19)',
 }));
 
-const StyledButton = styled(Button)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
-  color: theme.palette.common.white,
-  '&:hover': {
-    backgroundColor: theme.palette.primary.dark,
-  },
-}));
+
   const redirectToAppUsingGet= (url:string) => {
     const form = document.createElement('form');
     form.method = 'get';
@@ -61,7 +54,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
     alert(data.appUrl);
     //window.open(data.appUrl, "_blank");
     redirectToAppUsingPost(data.appUrl)
-    dispatch(setSelectedApp({selectedAppUrl:data.appUrl,itemclicked:true,selectAppName:data.appName }))
+   // dispatch(setSelectedApp({selectedAppUrl:data.appUrl,itemclicked:true,selectAppName:data.appName }))
 
   }
 
@@ -84,7 +77,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
     </Typography>
   </CardContent>
   <CardActions>
-    <StyledButton onClick={onClickHandler}>LAUNCH APP</StyledButton>
+    <Button onClick={onClickHandler}>LAUNCH APP</Button>
   </CardActions>
 </StyledCard>
   );

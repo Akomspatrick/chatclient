@@ -1,31 +1,17 @@
 import {
   Card,
-  CardHeader,
-  Avatar,
   IconButton,
   CardContent,
   Typography,
   CardActions,
-  Collapse,
   IconButtonProps,
-  Divider,
-  Chip,
 } from "@mui/material";
-import { red } from "@mui/material/colors";
-import DeleteIcon from "@mui/icons-material/Delete";
-import ViewIcon from "@mui/icons-material/Visibility";
-import InfoIcon from "@mui/icons-material/Info";
-import FlashAutoSharpIcon from "@mui/icons-material/FlashAutoSharp";
-import ClearIcon from "@mui/icons-material/OneKOutlined";
-import ArchiveIcon from "@mui/icons-material/Archive";
-import { NotificationData } from "./Notificationsinerfaces";
 import { styled } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import React from "react";
 import NotificationCardHeader from "./NotificationCardHeader";
 import { NotificationCardProps } from "./NotificationCardProps";
 import NotificationCardCollapse from "./NotificationCardCollapse";
-
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -42,10 +28,14 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-
 const NotificationCard = ({ index, notification }: NotificationCardProps) => {
   const [expanded, setExpanded] = React.useState(false);
+  const bgColor = notification.messageOwner ? notification.messageStatus==="DONE"?"Grey":"#ddc3c3" : "#b7d3b9"; 
   const handleExpandClick = () => {
+    if (notification.messageStatus === "NEW" && !expanded) {
+      alert("Should Call API to change the status to viewed");
+     // notification.messageStatus = "VIEWED";
+    }
     setExpanded(!expanded);
   };
   return (
@@ -53,12 +43,10 @@ const NotificationCard = ({ index, notification }: NotificationCardProps) => {
       key={index}
       sx={{
         maxWidth: 345,
-        backgroundColor: notification.messageOwner ? "#ddc3c3" : "#b7d3b9",
+        bgcolor:bgColor,
       }}
-       >
-    
+    >
       <NotificationCardHeader index={index} notification={notification} />
-
 
       <CardContent>
         <Typography variant="body2" color="text.secondary">
@@ -76,8 +64,10 @@ const NotificationCard = ({ index, notification }: NotificationCardProps) => {
           <ExpandMoreIcon />
         </ExpandMore>
       </CardActions>
-      <NotificationCardCollapse expanded={expanded} notification={notification} />
-
+      <NotificationCardCollapse
+        expanded={expanded}
+        notification={notification}
+      />
     </Card>
   );
 };

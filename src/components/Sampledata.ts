@@ -20,6 +20,7 @@ export const SampleData: NotificationData[] = [
     messageId: "msg1234",
     roomName: "room1",
     messageStatus: "NEW",
+    messageOwnerStatus: "NEW",
     messagePriority: false,
     messageVisible: true,
     //  "messageSubject": "Sample Message Subject"
@@ -44,6 +45,7 @@ export const SampleData: NotificationData[] = [
     messageId: "msg1236",
     roomName: "room1",
     messageStatus: "VIEWED",
+    messageOwnerStatus: "VIEWED",
     messagePriority: false,
     messageVisible: true,
     // "messageSubject": "Yet Another Sample Message Subject"
@@ -68,6 +70,7 @@ export const SampleData: NotificationData[] = [
     messageId: "msg1236",
     roomName: "room1",
     messageStatus: "DONE",
+    MessageOnwerStatus: "DONE",
     messagePriority: false,
     messageVisible: false,
     // "messageSubject": "Yet Another Sample Message Subject"
