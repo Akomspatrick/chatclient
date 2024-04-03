@@ -7,3 +7,11 @@ export const returndate = (date: string) => {
     );
   };
   
+
+  export const getIconColor = (messageStatus: string) => {
+    return messageStatus === "NEW"
+      ? "error"
+      : messageStatus === "VIEWED"
+      ? "success"
+      : "secondary";
+  };

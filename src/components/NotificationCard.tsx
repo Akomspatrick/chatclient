@@ -5,6 +5,7 @@ import {
   Typography,
   CardActions,
   IconButtonProps,
+  Tooltip,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -12,6 +13,7 @@ import React from "react";
 import NotificationCardHeader from "./NotificationCardHeader";
 import { NotificationCardProps } from "./NotificationCardProps";
 import NotificationCardCollapse from "./NotificationCardCollapse";
+import { NotificationAlert } from "./NotificationAlert";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -34,7 +36,7 @@ const NotificationCard = ({ index, notification }: NotificationCardProps) => {
   const handleExpandClick = () => {
     if (notification.messageStatus === "NEW" && !expanded) {
       alert("Should Call API to change the status to viewed");
-     // notification.messageStatus = "VIEWED";
+    
     }
     setExpanded(!expanded);
   };
@@ -61,8 +63,11 @@ const NotificationCard = ({ index, notification }: NotificationCardProps) => {
           aria-expanded={expanded}
           aria-label="show more"
         >
+            <Tooltip title="Click to View Details ">
           <ExpandMoreIcon />
+        </Tooltip >
         </ExpandMore>
+        
       </CardActions>
       <NotificationCardCollapse
         expanded={expanded}

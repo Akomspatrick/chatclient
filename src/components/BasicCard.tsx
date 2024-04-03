@@ -28,7 +28,8 @@ export default function BasicCard(data: BasicCardProps) {
   };
 
   const StyledCard = styled(Card)(({ theme }) => ({
-    minWidth: 275,
+    minWidth: 200,
+
     backgroundColor: theme.palette.grey[100],
     borderRadius: 35,
     boxShadow: "0 6px 20px 0 rgba(0, 0, 0, 0.19)",

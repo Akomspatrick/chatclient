@@ -23,12 +23,15 @@ import { setHubConnection } from "./state/HubConnectionSlice";
 import NotificationComponent from "./components/NotificationComponent";
 import logo from "./assets/images/NewLogoWithoutWhiteBgIcon2.png";
 import { Fixedvalues } from "./components/Constants/Fixedvalues";
+import { NotificationAlert } from "./components/NotificationAlert";
+
 
 function App() {
   const [tabledata, setTableData] = useState<NotificationData[]>(SampleData);
   // we will pull data from the server instead of sample data
-  //const [tabledata, setTableData] = useState<NotificationData[]>([]);
+ // const [tabledata, setTableData] = useState<NotificationData[]>([]);
   const [connection, setConnection] = useState<HubConnection | null>(null);
+  const [newdata, setNewData] = useState<string>('');
 
   const appUser = "softwareeng@massload.com";
   // this should be the email of the login user which should be retrieved from the token/store
@@ -42,15 +45,19 @@ function App() {
         .configureLogging(LogLevel.Information)
         .build();
       conn.on("ReceiveSpecificMessage", (message: NotificationData) => {
-        //alert(message.allRecipients + ' ' + appUser + ' ' + message.messageVisible + ' ' );
-
+       
         if (
+          
           message.allRecipients === appUser &&
           message.messageVisible === true
         ) {
           // the server should not even send the message if the user is not going to be visible
           // check also if  you can use send to group so that you wont have to filter the message here
+         // setNewData(message.guid);
           setTableData((tabledata) => [...tabledata, message]);
+          alert(message.messageTitle);
+          <NotificationAlert message={message.messageTitle} severity="success" />
+          console.log(tabledata);
         }
       });
       await conn.start();
@@ -64,6 +71,7 @@ function App() {
   useEffect(() => {
     connectToHub();
   }, []);
+
 
   return (
     <Container disableGutters maxWidth={false}>
@@ -93,7 +101,7 @@ function App() {
             />
           </Toolbar>
         </AppBar>
-      </Grid>
+           </Grid>
       <Box p={1}>
         <AppDashboard />
         <LifeReports />

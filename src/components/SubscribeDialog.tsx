@@ -80,6 +80,8 @@ const SubscribeDialog = ({
   }
   return (
     <Dialog
+      fullWidth={true}
+      maxWidth="sm"
       open={open}
       onClose={handleClose}
       PaperProps={{

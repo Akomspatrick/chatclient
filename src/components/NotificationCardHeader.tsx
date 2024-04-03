@@ -3,18 +3,18 @@ import { red } from '@mui/material/colors';
 import FlashAutoSharpIcon from '@mui/icons-material/FlashAuto';
 import InfoIcon from '@mui/icons-material/Info';
 import { NotificationCardProps } from './NotificationCardProps';
-import { returndate } from './Utils/Utils';
+import { getIconColor, returndate } from './Utils/Utils';
 
 
 
 const NotificationCardHeader = ({ index, notification }:NotificationCardProps) => {
   
-    const iconColor =
-    notification.messageStatus === "NEW"
-      ? "error"
-      : notification.messageStatus === "VIEWED"
-      ? "success"
-      : "disabled";
+    const iconColor = getIconColor(notification.messageStatus);
+    // notification.messageStatus === "NEW"
+    //   ? "error"
+    //   : notification.messageStatus === "VIEWED"
+    //   ? "success"
+    //   : "disabled";
 
 
     return (

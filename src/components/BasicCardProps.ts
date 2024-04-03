@@ -19,7 +19,7 @@ export const BasicCardPropsData: BasicCardProps[] = [
   },
   {
     theindex: 3,
-    appName: `Production Manager`,
+    appName: `Product Manager`,
     appDescription: `This is the description for app 3.`,
     appUrl: `http://localhost:3000/kngcd`,
   },
@@ -56,6 +56,24 @@ export const BasicCardPropsData: BasicCardProps[] = [
   {
     theindex: 9,
     appName: `Massload Production Scheduler`,
+    appDescription: `Massload Production Scheduler`,
+    appUrl: `http://example.com/app8`,
+  },
+  {
+    theindex: 10,
+    appName: `RMA Manager`,
+    appDescription: `Massload Production Scheduler`,
+    appUrl: `http://example.com/app8`,
+  },
+  {
+    theindex: 11,
+    appName: `Custom Design Project Manger`,
+    appDescription: `Massload Production Scheduler`,
+    appUrl: `http://example.com/app8`,
+  },
+  {
+    theindex: 11,
+    appName: `Exit`,
     appDescription: `Massload Production Scheduler`,
     appUrl: `http://example.com/app8`,
   },

@@ -9,7 +9,7 @@ const AppDasboard = () => {
     <Box p={5} style={{ height: '100%' }}>
       <Grid container spacing={4}>
         {BasicCardPropsData.map((data, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
+          <Grid item xs={6} sm={4} md={3} key={index}>
             <Paper elevation={5}>
               <BasicCard 
                 theindex={data.theindex}

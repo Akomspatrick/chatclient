@@ -1,5 +1,3 @@
-//import { Card, CardContent, Typography, IconButton } from '@mui/material';
-//import QuickreplyIcon from '@mui/icons-material/Quickreply';
 import { NotificationBoardProps } from './Notificationsinerfaces';
 import NotificationCard from './NotificationCard';
 import { Grid } from '@mui/material';

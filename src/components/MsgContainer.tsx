@@ -1,4 +1,3 @@
-import React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableRow, Paper } from '@mui/material';
 import { ChatRoomProps } from './ChatRoomProps';
 
