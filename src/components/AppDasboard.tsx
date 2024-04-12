@@ -6,7 +6,7 @@ import { BasicCardPropsData } from './BasicCardProps'
 
 const AppDasboard = () => {
   return (
-    <Box p={5} style={{ height: '100%' }}>
+    <Box p={5} >
       <Grid container spacing={4}>
         {BasicCardPropsData.map((data, index) => (
           <Grid item xs={6} sm={4} md={3} key={index}>

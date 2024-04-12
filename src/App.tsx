@@ -13,6 +13,7 @@ import {
   Container,
   Grid,
   IconButton,
+  Paper,
   Toolbar,
   Typography,
 } from "@mui/material";
@@ -24,14 +25,13 @@ import NotificationComponent from "./components/NotificationComponent";
 import logo from "./assets/images/NewLogoWithoutWhiteBgIcon2.png";
 import { Fixedvalues } from "./components/Constants/Fixedvalues";
 import { NotificationAlert } from "./components/NotificationAlert";
-
+import NotificationBoard from "./components/NotificationBoard";
 
 function App() {
   const [tabledata, setTableData] = useState<NotificationData[]>(SampleData);
   // we will pull data from the server instead of sample data
- // const [tabledata, setTableData] = useState<NotificationData[]>([]);
+  // const [tabledata, setTableData] = useState<NotificationData[]>([]);
   const [connection, setConnection] = useState<HubConnection | null>(null);
-
 
   const appUser = "softwareeng@massload.com";
   // this should be the email of the login user which should be retrieved from the token/store
@@ -45,18 +45,19 @@ function App() {
         .configureLogging(LogLevel.Information)
         .build();
       conn.on("ReceiveSpecificMessage", (message: NotificationData) => {
-       
         if (
-          
           message.allRecipients === appUser &&
           message.messageVisible === true
         ) {
           // the server should not even send the message if the user is not going to be visible
           // check also if  you can use send to group so that you wont have to filter the message here
-         // setNewData(message.guid);
+          // setNewData(message.guid);
           setTableData((tabledata) => [...tabledata, message]);
           alert(message.messageTitle);
-          <NotificationAlert message={message.messageTitle} severity="success" />
+          <NotificationAlert
+            message={message.messageTitle}
+            severity="success"
+          />;
           console.log(tabledata);
         }
       });
@@ -71,7 +72,6 @@ function App() {
   useEffect(() => {
     connectToHub();
   }, []);
-
 
   return (
     <Container disableGutters maxWidth={false}>
@@ -95,16 +95,25 @@ function App() {
               </Typography>
             </IconButton>
             <Box flexGrow={1} />
-            <NotificationComponent
+            {/* <NotificationComponent
               connection={connection}
               tabledata={tabledata}
-            />
+            /> */}
           </Toolbar>
         </AppBar>
-           </Grid>
-      <Box p={1}>
-        <AppDashboard />
-        <LifeReports />
+      </Grid>
+      <Box display="flex" height="100vh">
+        <Box p={1} style={{ width: "70vw" }}>
+          <AppDashboard />
+
+          <LifeReports />
+        </Box>
+        <Box width="25%" p={1}>
+          <Paper style={{ height: "100%", overflow: "scroll" }}>
+            {connection ? <NotificationBoard data={tabledata} /> : null}
+
+          </Paper>
+        </Box>
       </Box>
     </Container>
   );
