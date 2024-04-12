@@ -33,16 +33,13 @@ const NotificationCardCollapse = ({
   ): void {
     alert("arvive Icon Clicked");
   }
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
 
-  const handleClickOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  // const handleClickOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
 
-  function replyIconOnClickhandler(
-    _event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ): void {
-    handleClickOpen();
-  }
+  // function replyIconOnClickhandler( _event: React.MouseEvent<HTMLButtonElement, MouseEvent>  ): void {handleClickOpen(); }
+
   // const ownerStatus = "TARGET OWNER : " + notification.messageOwnerStatus;
   // const bgColor = getIconColor(notification.messageOwnerStatus);
 
@@ -52,7 +49,7 @@ const NotificationCardCollapse = ({
         {notification.messageBody}
 
         <Divider>
-          <Chip label="TARGET OWNER" size="small"  />
+          <Chip label="TARGET OWNER" size="small" />
           <Typography
             variant="body2"
             color="text.secondary"
@@ -63,7 +60,6 @@ const NotificationCardCollapse = ({
         </Divider>
       </CardContent>
       <CardActions disableSpacing>
-
         {notification.messageOwner && (
           <Tooltip title="Done- Task Completed">
             <IconButton color="primary" onClick={doneIconOnClickhandler}>
@@ -71,22 +67,22 @@ const NotificationCardCollapse = ({
             </IconButton>
           </Tooltip>
         )}
-        <Tooltip title="Reply to sender">
+        {/* <Tooltip title="Reply to sender">
           <IconButton color="success" onClick={replyIconOnClickhandler}>
             <ReplyIcon />
           </IconButton>
-        </Tooltip>
+        </Tooltip> */}
         <Tooltip title="Archive Notification">
           <IconButton color="secondary" onClick={archiveIconOnClickhandler}>
             <ArchiveIcon />
           </IconButton>
         </Tooltip>
       </CardActions>
-      <SubscribeDialog
+      {/* <SubscribeDialog
         open={open}
         handleClose={handleClose}
         notification={notification}
-      />
+      /> */}
     </Collapse>
   );
 };
