@@ -43,8 +43,8 @@ const NotificationCardCollapse = ({
   ): void {
     handleClickOpen();
   }
-  const ownerStatus = "TARGET OWNER : " + notification.messageOwnerStatus;
-  const bgColor = getIconColor(notification.messageOwnerStatus);
+  // const ownerStatus = "TARGET OWNER : " + notification.messageOwnerStatus;
+  // const bgColor = getIconColor(notification.messageOwnerStatus);
 
   return (
     <Collapse in={expanded} timeout="auto" unmountOnExit>
@@ -52,7 +52,7 @@ const NotificationCardCollapse = ({
         {notification.messageBody}
 
         <Divider>
-          <Chip label={ownerStatus} size="small" color={bgColor} />
+          <Chip label="TARGET OWNER" size="small"  />
           <Typography
             variant="body2"
             color="text.secondary"

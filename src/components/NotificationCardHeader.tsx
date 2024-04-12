@@ -9,7 +9,7 @@ import { getIconColor, returndate } from './Utils/Utils';
 
 const NotificationCardHeader = ({ index, notification }:NotificationCardProps) => {
   
-    const iconColor = getIconColor(notification.messageStatus);
+   // const iconColor = getIconColor(notification.messageStatus);
     // notification.messageStatus === "NEW"
     //   ? "error"
     //   : notification.messageStatus === "VIEWED"
@@ -27,17 +27,7 @@ const NotificationCardHeader = ({ index, notification }:NotificationCardProps) =
           {" "}{index + 1}{" "}
         </Avatar>
       }
-      action={
-        <Tooltip title=  {notification.messagePriority ?"High Priority": "For Your Information Only" }>
-        <IconButton aria-label="settings">
-          {notification.messagePriority ? (
-            <FlashAutoSharpIcon color={iconColor} />
-          ) : (
-            <InfoIcon color={iconColor} />
-          )}
-        </IconButton>
-        </Tooltip>
-      }
+
       title={
         "FROM : " +
         notification.sender +

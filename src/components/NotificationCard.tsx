@@ -32,7 +32,11 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 const NotificationCard = ({ index, notification }: NotificationCardProps) => {
   const [expanded, setExpanded] = React.useState(false);
-  const bgColor = notification.messageOwner ? notification.messageStatus==="DONE"?"Grey":"#ddc3c3" : "#b7d3b9"; 
+  const bgColor = notification.messageStatus ==="DONE"?"Grey": notification.messageOwner?"#ddc3c3" : "#b7d3b9"; 
+  const cardBorder = notification.messageStatus==="VIEWED" ?  "#5px":"10px solid black"; 
+
+  //const bgColor = notification.messageStatus ==="DONE"?"Grey":"#ddc3c3" ;
+
   const handleExpandClick = () => {
     if (notification.messageStatus === "NEW" && !expanded) {
       alert("Should Call API to change the status to viewed");
@@ -40,12 +44,16 @@ const NotificationCard = ({ index, notification }: NotificationCardProps) => {
     }
     setExpanded(!expanded);
   };
+
+
   return (
     <Card
       key={index}
       sx={{
         maxWidth: 345,
         bgcolor:bgColor,
+        border: cardBorder,
+        borderRadius: 10,
       }}
     >
       <NotificationCardHeader index={index} notification={notification} />

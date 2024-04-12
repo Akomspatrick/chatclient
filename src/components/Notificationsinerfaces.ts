@@ -20,15 +20,15 @@ export interface NotificationData {
   originatingApp: string;
   messageBody: string;
   messageTitle: string;
-  messageType: string;
+ // messageType: string;
   messageOwner: boolean;
-  messageUrl: string;
+ // messageUrl: string;
   messageId: string;
   roomName: string;
-  messageOwnerStatus: string; //"NEW";//VIEWED,DONE,,ARCHIVED
+ // messageOwnerStatus: string; //"NEW";//VIEWED,DONE,,ARCHIVED
   messageStatus: string; //"NEW";//VIEWED,DONE,ARCHIVED
   messageVisible: boolean;
-  messagePriority: boolean;
+ // messagePriority: boolean;
   //this is to show or hide the message
   // messageSubject: string;
 }
