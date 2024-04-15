@@ -1,13 +1,12 @@
-import { CardHeader, Avatar, IconButton, Tooltip } from '@mui/material';
+import { CardHeader, Typography } from '@mui/material';
 import { red } from '@mui/material/colors';
-import FlashAutoSharpIcon from '@mui/icons-material/FlashAuto';
-import InfoIcon from '@mui/icons-material/Info';
+
 import { NotificationCardProps } from './NotificationCardProps';
-import { getIconColor, returndate } from './Utils/Utils';
+import {  returndate } from './Utils/Utils';
 
 
 
-const NotificationCardHeader = ({ index, notification }:NotificationCardProps) => {
+const NotificationCardHeader = ({  notification }:NotificationCardProps) => {
   
    // const iconColor = getIconColor(notification.messageStatus);
     // notification.messageStatus === "NEW"
@@ -18,23 +17,34 @@ const NotificationCardHeader = ({ index, notification }:NotificationCardProps) =
 
 
     return (
-    <CardHeader
-      avatar={
-        <Avatar
-          sx={{ bgcolor: red[500], width: 24, height: 24 }}
-          aria-label="recipe"
-        >
-          {" "}{index + 1}{" "}
-        </Avatar>
-      }
+    <CardHeader sx={{ color: red[500] }}
+      // avatar={
+      //   <Avatar
+      //     sx={{ bgcolor: red[500], width: 24, height: 24 }}
+      //     aria-label="recipe"
+      //   >
+      //     {" "}{index + 1}{" "}
+      //   </Avatar>
+      // }
 
       title={
-        "FROM : " +
-        notification.sender +
-        " TO : " +
-        notification.mainRecipient
+        <>
+      <Typography variant="body2" color="text.primary" fontWeight="bold">
+        {"FROM : " + notification.sender }
+      </Typography>
+      <Typography variant="body2" color="text.primary" fontWeight="bold">
+        {"    TO : " + notification.mainRecipient}
+      </Typography>
+    </>
       }
-      subheader={"TIME : " + returndate(notification.dateSent)}
+      subheader={
+        <>
+        <Typography variant="body2" color="text.primary" fontWeight="bold">
+        {"TIME : "+ returndate(notification.dateSent)}
+      </Typography>
+
+        </>
+      }
     />
   );
 }

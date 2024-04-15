@@ -2,7 +2,7 @@ import { NotificationData } from "./Notificationsinerfaces";
 
 export interface NotificationCardProps {
   notification: NotificationData;
-  index: number;
+  //index: number;
 }
 
 export interface NotificationCardCollapseProps {

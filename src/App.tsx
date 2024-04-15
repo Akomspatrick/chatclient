@@ -28,13 +28,24 @@ import { NotificationAlert } from "./components/NotificationAlert";
 import NotificationBoard from "./components/NotificationBoard";
 
 function App() {
-  //const [tabledata, setTableData] = useState<NotificationData[]>(SampleData);
+  const [tabledata, setTableData] = useState<NotificationData[]>(SampleData);
   // we will pull data from the server instead of sample data
-   const [tabledata, setTableData] = useState<NotificationData[]>([]);
+   //const [tabledata, setTableData] = useState<NotificationData[]>([]);
   const [connection, setConnection] = useState<HubConnection | null>(null);
 
   const appUser = "softwareeng@massload.com";
   // this should be the email of the login user which should be retrieved from the token/store
+
+const sortbyOwner = (data: NotificationData[]) => {
+    return data.sort((a, b) => {
+      return a.mainRecipient.localeCompare(b.mainRecipient);
+    });
+  }
+const sortbyStatus = (data: NotificationData[]) => {
+    return data.sort((a, b) => {
+      return a.messageStatus.localeCompare(b.messageStatus);
+    });
+  }
 
   const dispatch = useDispatch();
   const connectToHub = async () => {
@@ -53,7 +64,7 @@ function App() {
           // check also if  you can use send to group so that you wont have to filter the message here
           // setNewData(message.guid);
           setTableData((tabledata) => [...tabledata, message]);
-          alert(message.messageTitle);
+         // alert(message.messageTitle);
           <NotificationAlert
             message={message.messageTitle}
             severity="success"
