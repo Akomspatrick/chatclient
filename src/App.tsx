@@ -19,18 +19,18 @@ import {
 } from "@mui/material";
 import LifeReports from "./components/LifeReports";
 import AppDashboard from "./components/AppDasboard";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setHubConnection } from "./state/HubConnectionSlice";
-import NotificationComponent from "./components/NotificationComponent";
+
 import logo from "./assets/images/NewLogoWithoutWhiteBgIcon2.png";
 import { Fixedvalues } from "./components/Constants/Fixedvalues";
 import { NotificationAlert } from "./components/NotificationAlert";
 import NotificationBoard from "./components/NotificationBoard";
 
 function App() {
-  const [tabledata, setTableData] = useState<NotificationData[]>(SampleData);
+  //const [tabledata, setTableData] = useState<NotificationData[]>(SampleData);
   // we will pull data from the server instead of sample data
-  // const [tabledata, setTableData] = useState<NotificationData[]>([]);
+   const [tabledata, setTableData] = useState<NotificationData[]>([]);
   const [connection, setConnection] = useState<HubConnection | null>(null);
 
   const appUser = "softwareeng@massload.com";
@@ -110,7 +110,39 @@ function App() {
         </Box>
         <Box width="25%" p={1}>
           <Paper style={{ height: "100%", overflow: "scroll" }}>
-            {connection ? <NotificationBoard data={tabledata} /> : null}
+            {
+            connection ?(
+              tabledata.length > 0 ? (
+                <NotificationBoard data={tabledata} />
+              ) : (
+                <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                height="5vh"
+                bgcolor="error.main"
+                color="common.white"
+                borderRadius={5}
+              >
+                <Typography variant="h6">NO NOTIFICATION DATA AVAILABLE</Typography>
+              </Box>
+                
+              )
+            ) : (
+              <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                height="5vh"
+                bgcolor="error.main"
+                color="common.white"
+                borderRadius={5}
+              >
+                <Typography variant="h6">NO CONNECTION FROM SERVER</Typography>
+              </Box>
+            ) 
+            }
+
 
           </Paper>
         </Box>

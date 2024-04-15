@@ -13,7 +13,8 @@ import React from "react";
 import NotificationCardHeader from "./NotificationCardHeader";
 import { NotificationCardProps } from "./NotificationCardProps";
 import NotificationCardCollapse from "./NotificationCardCollapse";
-import { NotificationAlert } from "./NotificationAlert";
+import { NotificationCardColorProps } from "./NotificationCardProps";
+import { getCArdColors } from "./Utils/Utils";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -30,10 +31,27 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
+
 const NotificationCard = ({ index, notification }: NotificationCardProps) => {
   const [expanded, setExpanded] = React.useState(false);
-  const bgColor = notification.messageStatus ==="DONE"?"Grey": notification.messageOwner?"#ddc3c3" : "#b7d3b9"; 
-  const cardBorder = notification.messageStatus==="VIEWED" ?  "#5px":"10px solid black"; 
+  const carddesign= getCArdColors(notification);  
+  //const bgColor = notification.messageStatus ==="DONE"?"Grey": notification.messageOwner?"#ddc3c3" : "#b7d3b9"; 
+  //const cardBorder = notification.messageStatus==="VIEWED" ?  "#5px":"10px solid black"; 
+  // if (notification.messageStatus==="DONE"){
+  //   bgColor = "Grey";
+  //   cardBorder = "#5px";
+
+  // } else if (notification.messageOwner){
+  //   bgColor = "#ddc3c3";
+  //   cardBorder = "10px solid black";
+  // } else {
+  //   bgColor = "#b7d3b9";
+  //   cardBorder = "#5px";
+  // }
+
+
+  // const bgColor = notification.messageStatus === "DONE" ? "Grey" : (notification.messageOwner ? "#ddc3c3" : "#b7d3b9");
+  // const cardBorder = notification.messageStatus === "DONE" || !notification.messageOwner ? "#5px" : "10px solid black";
 
   //const bgColor = notification.messageStatus ==="DONE"?"Grey":"#ddc3c3" ;
 
@@ -51,8 +69,8 @@ const NotificationCard = ({ index, notification }: NotificationCardProps) => {
       key={index}
       sx={{
         maxWidth: 345,
-        bgcolor:bgColor,
-        border: cardBorder,
+        bgcolor:carddesign.cardbackground,
+        border: carddesign.cardBorder,
         borderRadius: 10,
       }}
     >

@@ -20,17 +20,17 @@ export interface NotificationData {
   originatingApp: string;
   messageBody: string;
   messageTitle: string;
- // messageType: string;
+  // messageType: string;
   messageOwner: boolean;
- // messageUrl: string;
+  // messageUrl: string;
   messageId: string;
   roomName: string;
- // messageOwnerStatus: string; //"NEW";//VIEWED,DONE,,ARCHIVED
-  messageStatus: string; //"NEW";//VIEWED,DONE,ARCHIVED
+  messageOwnerStatus: string; //"NOTDONE";//DONE,
+  messageStatus: string; //"NOTVIEW";//VIEWED,
   messageVisible: boolean;
- // messagePriority: boolean;
+  // messagePriority: boolean;
   //this is to show or hide the message
   // messageSubject: string;
 }
-// if you are the owner of the message, 
+// if you are the owner of the message,
 // the message owner statue will always be updated whenever you update message status
