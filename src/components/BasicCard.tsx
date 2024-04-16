@@ -29,10 +29,16 @@ export default function BasicCard(data: BasicCardProps) {
 
   const StyledCard = styled(Card)(({ theme }) => ({
     minWidth: 200,
-
+    height: 200,
     backgroundColor: theme.palette.grey[100],
-    borderRadius: 35,
+    borderRadius: 2,
     boxShadow: "0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+    transition: "transform 0.15s ease-in-out",
+    "&:hover": {
+      boxShadow: "0 6px 20px 0 rgba(0, 0, 0, 0.23)",
+    },
+    display: 'flex', flexDirection: 'column', justifyContent: "space-between",
+    borderBottom: "5px solid #ffffff",
   }));
 
   const redirectToAppUsingGet = (url: string) => {
@@ -82,10 +88,18 @@ export default function BasicCard(data: BasicCardProps) {
         >
           APPLICATION
         </Typography>
-        <Typography variant="h5" component="div">
-          {data.appName}
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        <Typography 
+  variant="h5" 
+  component="div" 
+  style={{ 
+    color: '#fffff', 
+    fontWeight: 'bold', 
+    textShadow: '1px 1px 2px rgba(0, 0, 0, 0.1)'
+  }}
+>
+  {data.appName}
+</Typography>
+        <Typography sx={{ mb: 1.2 }} color="text.secondary">
           version 4.0
         </Typography>
         <Typography variant="body2">
@@ -94,7 +108,7 @@ export default function BasicCard(data: BasicCardProps) {
        {'"a benevolent smile"'} */}
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions >
         <Button onClick={onClickHandler}>LAUNCH APP</Button>
       </CardActions>
     </StyledCard>
