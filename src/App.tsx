@@ -36,16 +36,7 @@ function App() {
   const appUser = "softwareeng@massload.com";
   // this should be the email of the login user which should be retrieved from the token/store
 
-const sortbyOwner = (data: NotificationData[]) => {
-    return data.sort((a, b) => {
-      return a.mainRecipient.localeCompare(b.mainRecipient);
-    });
-  }
-const sortbyStatus = (data: NotificationData[]) => {
-    return data.sort((a, b) => {
-      return a.messageStatus.localeCompare(b.messageStatus);
-    });
-  }
+
 
   const dispatch = useDispatch();
   const connectToHub = async () => {

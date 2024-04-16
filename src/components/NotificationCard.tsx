@@ -13,7 +13,6 @@ import React from "react";
 import NotificationCardHeader from "./NotificationCardHeader";
 import { NotificationCardProps } from "./NotificationCardProps";
 import NotificationCardCollapse from "./NotificationCardCollapse";
-import { NotificationCardColorProps } from "./NotificationCardProps";
 import { getCArdColors } from "./Utils/Utils";
 
 interface ExpandMoreProps extends IconButtonProps {

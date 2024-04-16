@@ -27,7 +27,10 @@ export function getCArdColors(
     ? "#ddc3c3" 
     : "#b7d3b9";
 
-const cardBorder = notification.messageOwnerStatus === "DONE" || notification.messageStatus == "VIEWED" 
+// const cardBorder = notification.messageOwnerStatus === "DONE" || notification.messageStatus == "VIEWED" 
+//   ? "#5px" 
+//   : "10px solid black";
+  const cardBorder = notification.messageStatus == "VIEWED" 
   ? "#5px" 
   : "10px solid black";
 
