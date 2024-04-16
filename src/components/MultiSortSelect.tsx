@@ -63,11 +63,21 @@ export default function MultipleSortSelect({
 
   return (
     <div>
-      {personName.length > 0 ? (
-        <div>Sorted By: {personName.join(", ")}</div>
-      ) : (
-        <div></div>
-      )}
+  {personName.length > 0 ? (
+  <div style={{ 
+    color: '#333', 
+    fontSize: '0.7em', 
+    fontWeight: 'bold', 
+    padding: '0.5em', 
+    backgroundColor: '#f5f5f5', 
+    borderRadius: '5px', 
+    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.15)' 
+  }}>
+    Sorted By: {personName.join(", ")}
+  </div>
+) : (
+  <div></div>
+)}
       <FormControl sx={{ m: 1, width: 450, mt: 3 }}>
         <Select
           multiple
