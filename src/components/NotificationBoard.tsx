@@ -41,9 +41,10 @@ const NotificationBoard = ({ data }: NotificationBoardProps) => {
         alignItems="center"
         justifyContent="center"
         justifyItems="center"
+      
       >
         {tabledata.map((notification, index) => (
-          <NotificationCard index={index} notification={notification} />
+          <NotificationCard key={index} notification={notification} />
         ))}
       </Grid>
     </Box>

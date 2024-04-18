@@ -67,7 +67,7 @@ export default function BasicCard(data: BasicCardProps) {
     document.body.removeChild(form);
   };
 
-  console.log(url);
+  //console.log(url);
   const dispatch = useDispatch();
 
   function onClickHandler(event: React.MouseEvent<HTMLButtonElement>): void {
