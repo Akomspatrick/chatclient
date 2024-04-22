@@ -32,7 +32,7 @@ function App() {
   // we will pull data from the server instead of sample data
    //const [tabledata, setTableData] = useState<NotificationData[]>([]);
   const [connection, setConnection] = useState<HubConnection | null>(null);
-
+  
   const appUser = "softwareeng@massload.com";
   // this should be the email of the login user which should be retrieved from the token/store
 
@@ -101,6 +101,7 @@ function App() {
               connection={connection}
               tabledata={tabledata}
             /> */}
+            <>{appUser}</>
           </Toolbar>
         </AppBar>
       </Grid>

@@ -19,18 +19,18 @@ const NotificationCardCollapse = ({
   expanded,
   notification,
 }: NotificationCardCollapseProps) => {
-  function doneIconOnClickhandler(
-    _event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ): void {
-    alert(
-      "done Icon Clicked- If you are the owner of the task, you can mark it as done. ,"
-    );
-  }
-  function archiveIconOnClickhandler(
-    _event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ): void {
-    alert("arvive Icon Clicked");
-  }
+  // function doneIconOnClickhandler(
+  //   _event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  // ): void {
+  //   alert(
+  //     "done Icon Clicked- If you are the owner of the task, you can mark it as done. ,"
+  //   );
+  // }
+  // function archiveIconOnClickhandler(
+  //   _event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  // ): void {
+  //   alert("arvive Icon Clicked");
+  // }
 
 
   return (
@@ -50,7 +50,8 @@ const NotificationCardCollapse = ({
         </Divider>
       </CardContent>
       <CardActions disableSpacing>
-        {notification.messageOwner && (
+
+        {/* {notification.messageOwner && (
           <Tooltip title="Done- Task Completed">
             <IconButton color="primary" onClick={doneIconOnClickhandler}>
               <DoneIcon />
@@ -63,6 +64,7 @@ const NotificationCardCollapse = ({
             <ArchiveIcon />
           </IconButton>
         </Tooltip>
+         */}
       </CardActions>
 
     </Collapse>
