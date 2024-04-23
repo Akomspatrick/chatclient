@@ -7,7 +7,6 @@ import { Box, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import MultipleSortSelect from "./MultiSortSelect";
 import { ReArrangeTableData } from "./Utils/Rearragnge";
-
 const NotificationBoard = ({ data }: NotificationBoardProps) => {
   const [tabledata, setTableData] = useState<NotificationData[]>(data);
   const [personName, setPersonName] = useState<string[]>([]);
